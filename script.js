@@ -72,6 +72,7 @@ const yearAddonObj = [
 
 const addonObj = [monthAddonObj, yearAddonObj];
 
+// Displan plan UI
 const displayPlan = function (planObj, yearly = false) {
   planCtn.innerHTML = "";
 
@@ -97,6 +98,7 @@ const displayPlan = function (planObj, yearly = false) {
 
 displayPlan(planObj);
 
+//Display Addon Ui
 const displayAddon = function (addonObj, yearly) {
   addonCtn.innerHTML = "";
 
@@ -122,6 +124,7 @@ const displayAddon = function (addonObj, yearly) {
 
 displayAddon(addonObj);
 
+// Display Current page
 const activePage = function (page) {
   if (currPage > 1) backBtn.classList.remove("hidden");
   else backBtn.classList.add("hidden");
@@ -138,12 +141,24 @@ const activePage = function (page) {
   activateStep(currPage);
 };
 
+// Display current step
 const activateStep = function (page) {
   const activeStep = document.querySelector(`.step--${page}`);
   allSteps.forEach((step) => step.classList.remove("step--active"));
   activeStep?.classList.add("step--active");
 };
 
+const changeBtn = function () {
+  if (currPage === maxPage - 1) {
+    nextBtn.textContent = "Confirm";
+    nextBtn.style.backgroundColor = "#483eff";
+  } else {
+    nextBtn.textContent = "Next Step";
+    nextBtn.style.backgroundColor = "#012a56";
+  }
+};
+
+// Get user plan
 const selectPlan = function (e) {
   const clicked = e.target.closest(".plan");
 
@@ -168,6 +183,7 @@ const selectPlan = function (e) {
   displaySummaryPlan(objId);
 };
 
+// Get user plan and display in summary page
 const displaySummaryPlan = function (Obj) {
   sumCntn.innerHTML = "";
 
@@ -185,6 +201,7 @@ const displaySummaryPlan = function (Obj) {
   sumCntn.insertAdjacentHTML("beforeend", HTML);
 };
 
+// Get user addon selection
 const selectAddon = function (e) {
   const clicked = e.target.closest(".addon");
 
@@ -207,12 +224,12 @@ const selectAddon = function (e) {
   const totalAddon = objId
     .map(({ price }) => Number.parseInt(price, 10))
     .reduce((el, acc) => el + acc, 0);
-  console.log(totalAddon);
 
   displaySummaryAddon(objId);
-  displayTotalAddon(totalAddon);
+  displayTotal(totalAddon);
 };
 
+// Display Addon Summary
 const displaySummaryAddon = function (obj) {
   obj.forEach(({ id, title, price }) => {
     if (!document.querySelector(`.addon-item[data-id="${id}"]`)) {
@@ -227,7 +244,8 @@ const displaySummaryAddon = function (obj) {
   });
 };
 
-const displayTotalAddon = function (Obj) {
+// Display total price based on user selection
+const displayTotal = function (Obj) {
   totalCntn.innerHTML = "";
   const HTML = `
   <span class="total-text">Total (per ${year ? "year" : "month"})</span>
@@ -252,7 +270,8 @@ const validateInputs = function () {
       if (!input.nextElementSibling?.classList.contains("error-msg")) {
         input.insertAdjacentHTML(
           "afterend",
-          `<span class="error-msg">This field is required</span>`);
+          `<span class="error-msg">This field is required</span>`
+        );
       }
       isValid = false;
     } else {
@@ -279,14 +298,14 @@ nextBtn.addEventListener("click", function () {
     return;
   }
   currPage++;
+  changeBtn();
   activePage(currPage);
 });
 
 backBtn.addEventListener("click", function () {
   currPage--;
+  changeBtn();
   activePage(currPage);
-  document.querySelectorAll(".error").forEach(el => el.classList.remove("error"));
-  document.querySelectorAll(".error-msg").forEach(el => el.remove());
 });
 
 planCtn.addEventListener("click", selectPlan);
