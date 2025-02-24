@@ -239,6 +239,31 @@ const displayTotalAddon = function (Obj) {
   totalCntn.insertAdjacentHTML("beforeend", HTML);
 };
 
+//Make sure user enters inputs
+const validateInputs = function () {
+  let isValid = true;
+  const inputs = document.querySelectorAll(
+    ".page:not(.hidden) input[required]"
+  );
+
+  inputs.forEach((input) => {
+    if (!input.value.trim()) {
+      input.classList.add("error");
+      if (!input.nextElementSibling?.classList.contains("error-msg")) {
+        input.insertAdjacentHTML(
+          "afterend",
+          `<span class="error-msg">This field is required</span>`);
+      }
+      isValid = false;
+    } else {
+      input.classList.remove("error");
+      input.nextElementSibling?.remove();
+    }
+  });
+
+  return isValid;
+};
+
 //Event Listeners
 let year = false;
 toggleBtn.addEventListener("change", function (e) {
@@ -250,6 +275,9 @@ toggleBtn.addEventListener("change", function (e) {
 });
 
 nextBtn.addEventListener("click", function () {
+  if (!validateInputs()) {
+    return;
+  }
   currPage++;
   activePage(currPage);
 });
@@ -257,6 +285,8 @@ nextBtn.addEventListener("click", function () {
 backBtn.addEventListener("click", function () {
   currPage--;
   activePage(currPage);
+  document.querySelectorAll(".error").forEach(el => el.classList.remove("error"));
+  document.querySelectorAll(".error-msg").forEach(el => el.remove());
 });
 
 planCtn.addEventListener("click", selectPlan);

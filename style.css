@@ -14,11 +14,6 @@
     --sec-color: hsl(228, 100%, 84%);
     --grey: hsl(231, 11%, 63%);
     --light-grey: hsl(217, 100%, 97%);
-    --color-primary-opacity: #5ec5763a;
-    --color-secondary-opacity: #ffcd0331;
-    --color-tertiary-opacity: #ff58602d;
-    --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
-    --gradient-secondary: linear-gradient(to top left, #ffb003, #ffcb03);
 }
 
 body {
@@ -49,6 +44,7 @@ main {
 }
 
 .progress-check {
+    /* height: 100%; */
     margin: 8px;
     border-radius: 8px;
     padding: 20px;
@@ -56,14 +52,26 @@ main {
     flex-direction: column;
     gap: 24px;
     text-transform: uppercase;
-    background-color: var(--nav-color);
+    /* background-color: var(--nav-color); */
     color: var(--white);
+    position: relative;
+    z-index: 6;
+}
+
+.bkg-image {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
 }
 
 .step {
     display: flex;
     align-items: center;
     gap: 12px;
+    z-index: 6;
 }
 
 .count {
@@ -159,22 +167,37 @@ input {
     background: none;
 }
 
+::placeholder {
+    color: var(--grey);
+    font-size: 12px;
+    font-weight: 300;
+}
+
 .form input:hover {
-    border: 1.5px solid var(--nav-color); 
+    border: 1.5px solid var(--nav-color);
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.error-msg {
+    color: red;
+    font-size: 12px;
+    display: block;
 }
 
 .plans {
     display: flex;
     justify-content: flex-start;
-    /* flex-wrap: wrap; */
     gap: 20px;
 }
 
 .plan {
     border: 1px solid var(--grey);
-    padding: 20px;
-    border-radius:8px;
-    width: 120px;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
     background-color: var(--white);
     display: flex;
     flex-direction: column;
@@ -185,12 +208,13 @@ input {
 }
 
 .plan.selected {
-    border: 1px solid var(--nav-color); 
+    border: 1px solid var(--nav-color);
     background-color: var(--light-grey);
 }
 
-.plan:hover, .addon:hover {
-    border: 1px solid var(--nav-color); 
+.plan:hover,
+.addon:hover {
+    border: 1px solid var(--nav-color);
 }
 
 .plan-content {
@@ -213,7 +237,7 @@ input {
 .plan-discount {
     font-size: 12px;
     font-weight: 400;
-    color: var(--pri-color); 
+    color: var(--pri-color);
 }
 
 .toggle-container {
@@ -267,7 +291,7 @@ input {
     position: absolute;
     content: "";
     height: 14px;
-    width:14px;
+    width: 14px;
     left: 3px;
     bottom: 3px;
     background-color: var(--white);
@@ -275,11 +299,11 @@ input {
     border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: var(--pri-color);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(20px);
 }
 
@@ -289,6 +313,7 @@ input:checked + .slider:before {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 8px;
+    cursor: pointer;
 }
 
 .addon {
@@ -299,6 +324,7 @@ input:checked + .slider:before {
     border-radius: 8px;
     padding: 12px;
     width: 100%;
+    cursor: pointer;
 }
 
 .addon-checkbox {
@@ -337,7 +363,7 @@ input:checked + .slider:before {
 }
 
 .addon.selected {
-    border: 1px solid var(--nav-color); 
+    border: 1px solid var(--nav-color);
     background-color: var(--light-grey);
 }
 
@@ -350,7 +376,7 @@ input:checked + .slider:before {
     border-radius: 8px;
 }
 
-.summary-header{
+.summary-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -384,12 +410,14 @@ input:checked + .slider:before {
     gap: 8px
 }
 
-.addon-item, .summary-total {
+.addon-item,
+.summary-total {
     display: flex;
     justify-content: space-between;
 }
 
-.item-name, .total-text {
+.item-name,
+.total-text {
     font-size: 14px;
     color: var(--grey);
 }
@@ -421,4 +449,3 @@ input:checked + .slider:before {
     justify-content: center;
     text-align: center;
 }
-
