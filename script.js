@@ -233,7 +233,7 @@ const displayTotalAddon = function (Obj) {
   <span class="total-text">Total (per ${year ? "year" : "month"})</span>
                 <span class="total-price" id="total-price">$${
                   Obj + totalPlan
-                }</span>
+                } / ${year ? "yr" : "mo"}</span>
   `;
 
   totalCntn.insertAdjacentHTML("beforeend", HTML);
