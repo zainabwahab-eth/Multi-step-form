@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <aside class="progress-check">
+            <div class=" step step--1 step--active">
+                <div class="count">
+                    <p>1</p>
+                </div>
+                <div class="step-content">
+                    <p class="step-title">Step 1</p>
+                    <h5 class="step-paragraph">Your Info</h5>
+                </div>
+            </div>
+
+            <div class="step step--2">
+                <div class="count">
+                    <p>2</p>
+                </div>
+                <div class="step-content">
+                    <p class="step-title">Step 2</p>
+                    <h5 class="step-paragraph">Select Plan</h5>
+                </div>
+            </div>
+
+            <div class="step step--3">
+                <div class="count">
+                    <p>3</p>
+                </div>
+                <div class="step-content">
+                    <p class="step-title">Step 3</p>
+                    <h5 class="step-paragraph">Add-ons</h5>
+                </div>
+            </div>
+
+            <div class="step step--4">
+                <div class="count">
+                    <p>4</p>
+                </div>
+                <div class="step-content">
+                    <p class="step-title">Step 4</p>
+                    <h5 class="step-paragraph">Summary</h5>
+                </div>
+            </div>
+        </aside>
+        <section class="page page--1">
+            <div class="page-content">
+                <h2 class="page-header">Personal Info</h2>
+                <p class="page-paragraph">Please provide your name, email address, and phone number.</p>
+            </div>
+
+
+            <form class="form">
+                <label for="name" required>Name <input id="name" placeholder="e.g. Stephen King" type="text"  /></label>
+
+                <label for="email">Email Address <input id="email" placeholder="e.g. stephenking@lorem.com"
+                        type="email" required/></label>
+
+                <label for="number">Phone Number<input id="number" placeholder="e.g. +1 234 567 890"
+                        type="tel" required/></label>
+            </form>
+        </section>
+
+        <section class="page page--2 hidden">
+            <div class="page-content">
+                <h2 class="page-header">Select your plan</h2>
+                <p class="page-paragraph">You have the option of monthly or yearly billing.</p>
+            </div>
+
+
+            <div class="plans plans--monthly">
+            
+            </div>
+
+            <div class="toggle-container">
+                <span class="toggle-label active">Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggleSwitch">
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">Yearly</span>
+            </div>
+        </section>
+
+        <section class="page page--3 hidden">
+            <div class="page-content">
+                <h2 class="page-header">Pick add-ons</h2>
+                <p class="page-paragraph">Add-ons help enhance your gaming experience.</p>
+            </div>
+
+
+            <div class="addons addons--monthly">
+                
+            </div>
+        </section>
+
+        <section class="page page--4 hidden">
+            <div class="page-content">
+                <h2 class="page-header">Finishing up</h2>
+                <p class="page-paragraph">Double-check everything looks OK before confirming.</p>
+            </div>
+
+            <div class="summary-container">
+                
+            </div>
+
+            <div class="summary-total">
+                <span class="total-text">Total (per month)</span>
+                <span class="total-price" id="total-price">+$120/mo</span>
+            </div>
+        </section>
+
+        <section class="page page--5 hidden">
+            <div class="thank-you-content">
+                <img src="images/icon-thank-you.svg" alt="Thank-you-icon" />
+                <h3 class="page-header">Thank you!</h3>
+                <p class="page-paragraph">Thanks for confirming your subscription! We hope you have fun
+                    using our platform. If you ever need support, please feel free
+                    to email us at support@loremgaming.com.</p>
+            </div>
+        </section>
+        <button class="back-btn hidden">Go Back</button>
+        <button class="next-btn">Next Step</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
